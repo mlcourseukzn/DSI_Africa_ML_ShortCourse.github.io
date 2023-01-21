@@ -5,15 +5,15 @@ enhance capacity in machine learning methods for health data science to address 
 Software required: R & RStudio.
 
 * Course materials can be found here. 
-* Official course webpage here: [http://coredatascience.github.io](http://coredatascience.github.io)
+* Official course webpage here: [http://mlcourseukzn.github.io](http://mlcourseukzn.github.io)
 
 # Instructor
 * Dr. Gabreil Kallah-Dagadu
-* Postdoc Fellow
-* Kallahdagadug@ukzn.ac.za
+  Postdoc Fellow
+  kallahdagadug@ukzn.ac.za
 * Dr. Mohanad Mohammed
-* Postdoc Fellow
-* mohammedm1@ukzn.ac.za
+  Postdoc Fellow
+  mohammedm1@ukzn.ac.za
 
 # Dates:
 Monday, 23 January 2023 – Friday, 3rd February 2023
@@ -29,7 +29,7 @@ KRITH building, K1 and K2 seminar rooms (Ground floor), University of KwaZulu-Na
 Note: all office hours will be held in-person AND online via Zoom links in Canvas.
 
 | Time      | Monday 23/01 | Tuesday 24/01  | Wednesday 25/01 | Thursday 26/01 | Friday 27/01 |
-| :---     |    :----   |    :--- |
+| :---     |    :----   |    :--- | :--- | :--- | :--- |
 | 9:00-10:30 am | Introduction to machine learning  | Naïve Bayes, KNN | Regression and classification trees | Regularization, Ridge Regression, LASSO | Dealing with a multiclass classification problem |
 | 10:30-10:45 am | 1:30-2:30pm  | FXB G11 |
 | 10:45-12:00 pm | 2:30-3:30pm  | Heather's office (Building 1, 4th floor, room 421A) |
