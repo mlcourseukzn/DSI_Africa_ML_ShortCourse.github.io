@@ -15,20 +15,20 @@ Software required: R & RStudio.
 * Postdoc Fellow
 * mohammedm1@ukzn.ac.za
 
-# Dates:
+# Dates
 Monday, 23 January 2023 – Friday, 3rd February 2023
 
-# Time:
+# Time
 09h00 – 16h00 SAST daily
 
-# Venue:
+# Venue
 KRITH building, K1 and K2 seminar rooms (Ground floor), University of KwaZulu-Natal Medical School, Umbilo Road, Durban
 
 # Schedule
 
 Note: all lectures will be held in-person AND online via Zoom links. For online attendance please use the following link: https://tinyurl.com/2yxd7pwk
 
-* Week 1:
+## Week 1:
 
 | Time      | Monday 23/01 | Tuesday 24/01  | Wednesday 25/01 | Thursday 26/01 | Friday 27/01 |
 | :---     |    :----   |    :--- | :--- | :--- | :--- |
@@ -41,7 +41,7 @@ Note: all lectures will be held in-person AND online via Zoom links. For online 
 | 2:30-3:45 pm | Lab | Lab | Lab | Lab | Lab |
 
 
-* Week 2:
+## Week 2:
 
 | Time      | Monday 23/01 | Tuesday 24/01  | Wednesday 25/01 | Thursday 26/01 | Friday 27/01 |
 | :---     |    :----   |    :--- | :--- | :--- | :--- |
