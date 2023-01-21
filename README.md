@@ -64,11 +64,11 @@ haven't cloned the repository before, follow these instructions:
 and paste in the link you just copied. Under "Create Project as
 Subdirectory of", browse and select a folder where you want the course
 materials to go.
-3. Press "Create Project". This will create a folder called `BST219_2022`
+3. Press "Create Project". This will create a folder called `DSI_Africa_ML_ShortCourse`
 in the folder you selected in step 2.
 4. Now, you can open this project using the projects tab in the upper
 right of RStudio, or going to File > Open Project and then navigating
-to the `BST219_2022` folder and opening the `.Rproj` file.
+to the `DSI_Africa_ML_ShortCourse` folder and opening the `.Rproj` file.
 
 If you already cloned the repository outside of RStudio (e.g. using
 Git Bash), you can associate the directory that was created in that
