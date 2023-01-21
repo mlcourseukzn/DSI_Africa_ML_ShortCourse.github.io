@@ -26,7 +26,7 @@ KRITH building, K1 and K2 seminar rooms (Ground floor), University of KwaZulu-Na
 
 # Schedule
 
-Note: all office hours will be held in-person AND online via Zoom links in Canvas.
+Note: all lectures will be held in-person AND online via Zoom links. For online attendance please use the following link: https://tinyurl.com/2yxd7pwk
 
 | Time      | Monday 23/01 | Tuesday 24/01  | Wednesday 25/01 | Thursday 26/01 | Friday 27/01 |
 | :---     |    :----   |    :--- | :--- | :--- | :--- |
