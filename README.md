@@ -9,11 +9,11 @@ Software required: R & RStudio.
 
 # Instructor
 * Dr. Gabreil Kallah-Dagadu
-  Postdoc Fellow
-  kallahdagadug@ukzn.ac.za
+* Postdoc Fellow
+* kallahdagadug@ukzn.ac.za
 * Dr. Mohanad Mohammed
-  Postdoc Fellow
-  mohammedm1@ukzn.ac.za
+* Postdoc Fellow
+* mohammedm1@ukzn.ac.za
 
 # Dates:
 Monday, 23 January 2023 – Friday, 3rd February 2023
@@ -31,12 +31,12 @@ Note: all office hours will be held in-person AND online via Zoom links in Canva
 | Time      | Monday 23/01 | Tuesday 24/01  | Wednesday 25/01 | Thursday 26/01 | Friday 27/01 |
 | :---     |    :----   |    :--- | :--- | :--- | :--- |
 | 9:00-10:30 am | Introduction to machine learning  | Naïve Bayes, KNN | Regression and classification trees | Regularization, Ridge Regression, LASSO | Dealing with a multiclass classification problem |
-| 10:30-10:45 am | 1:30-2:30pm  | FXB G11 |
-| 10:45-12:00 pm | 2:30-3:30pm  | Heather's office (Building 1, 4th floor, room 421A) |
-| 12:00-1:00 pm | 10:30-11:30am | FXB G10 |
-| 1:00-2:15 pm | 2:00-3:00pm | Building 2, 4th floor, room 401 (Biostats chair's conference room) |
-| 2:15-2:30 pm |
-| 2:30-3:45 pm |
+| 10:30-10:45 am | Break  | Break | Break | Break | Break |
+| 10:45-12:00 pm | Logistic regression  | LDA and QDA | Random forests and boosting | Support vector machines | Multinomial regression |
+| 12:00-1:00 pm | Lunch | Lunch | Lunch | Lunch | Lunch |
+| 1:00-2:15 pm | Performance metrics, ROC, AUROC | Tuning of parameters, avoid over fitting | Feature selection and feature importance | Tuning of machines, comparison of machines | The validation of machines problem |
+| 2:15-2:30 pm | Break | Break | Break | Break | Break |
+| 2:30-3:45 pm | Lab | Lab | Lab | Lab | Lab |
 
 
 # Downloading course materials using Git with RStudio
