@@ -1,0 +1,304 @@
+---
+title: "Multinomial Regression"
+author: "Gabriel Kallah-Dagadu"
+date: "2023-01-13"
+output: html_document
+---
+
+
+# Introduction to Multiclass:
+
+We have heard about classification and regression techniques in machine learning. We know that these two techniques work on different algorithms for discrete and continuous data, respectively. In this section, we will learn more about Multiclass classification. If we dig deeper into classification, we deal with two types of target variables, binary class, and multi-class target variables.
+
+Binary, as the name suggests, has two categories in the dependent variable/column. Multiclass refers to variales with more than two categories in it. There are several algorithms such as Naïve Bayes (NB), Decision trees (DT), Support vector machine (SVM), Random forest (RF), k-nearest neighbours (KNN), and logistic regression (Lreg) that are used for multiclass classification. In this section, we will discuss _Multinomial Logistic regression_.
+
+Logistic regression is a technique used when the dependent variable is categorical (or nominal). For Binary logistic regression the number of values for the dependent variable is two, whereas the number of values for the dependent variable for multinomial logistic regression is more than two.
+
+Multinomial regression is used to predict the nominal target variable. In case the target variable is of ordinal type, then we need to use ordinal logistic regression. 
+
+In this example, we will see how we can run multinomial logistic regression. As part of data preparation, ensure that data is free of multicollinearity, outliers, and high influential leverage points.
+
+# Equation:
+
+In logistic regression, a logistic transformation of the odds (referred to as logit) serves as the depending variable:
+$$
+log (odds)=logit(p)=\ln(\dfrac{p}{1-p})= \beta_0+\beta_1x_1+\beta_2x_2+\beta_3x_3+\cdots
+$$
+or 
+$$
+p=\dfrac{\exp\{\beta_0+\beta_1x_1+\beta_2x_2+\beta_3x_3+\cdots\}}{1+ \exp\{\beta_0+\beta_1x_1+\beta_2x_2+\beta_3x_3+\cdots\}}
+$$
+## Logits or Log Odds
+
+Odds value can range from 0 to infinity and tell you how much more likely it is that an observation is a member of the target group rather than a member of the other group.
+
+$$
+Odds=\dfrac{p}{1-p}
+$$
+
+If the probability is $0.80$, the odds are 4 to 1 or $0.80/0.20$; if the probability is $0.25$, the odds are $0.33$ ie. $(0.25/0.75)$.
+
+The `odds ratio` (OR), estimates the change in the odds of membership in the target group for a one unit increase in the predictor. It is calculated by using the regression coefficient of the predictor as the `exponent` or `exp`.
+
+Assume that, we are predicting accountancy success by a maths competency predictor that $b = 2.69$. Thus the odds ratio is $exp(2.69)$ or $14.73$. Therefore the odds of passing are 14.73 times greater for a student for example who had a pre-test score of 5 than for a student whose pre-test score was 4.
+
+# Checking Assumption: Multicollinearity
+
+To check for `Multicollinearity` just run `linear regression` after assuming categorical dependent variable as continuous variable.
+
+1. If the largest `VIF` (Variance Inflation Factor) is greater than 10 then there is cause of concern (Bowerman & O’Connell, 1990).
+2. Tolerance below $0.1$ indicates a serious problem.
+
+3. Tolerance below $0.2$ indicates a potential problem (Menard,1995).
+
+4. If the Condition index is greater than 15 then the multicollinearity is assumed.
+
+# Features of Multinomial logistic regression
+
+Multinomial logistic regression to predict membership of more than two categories. It (basically) works in the same way as binary logistic regression. The analysis breaks the outcome variable down into a series of comparisons between two categories.
+
+E.g., if you have three outcome categories `(A, B and C)`, then the analysis will consist of two comparisons that you choose:
+
+1. Compare everything against your first category (e.g. A vs. B and A vs. C), 
+
+2. Or your last category (e.g. A vs. C and B vs. C),
+
+3. Or a custom category (e.g. B vs. A and B vs. C).
+
+The important parts of the analysis and output are much the same as we have just seen for binary logistic regression.
+
+## Running Multinomial Logistic Regression
+
+In this example, we will be using `Breast Tissue` data from UCI machine learning repository. Originally, the breast tissues have been classified into 6 groups.
+However, we will merge the fibro-adenoma, mastopathy, and glandular classes as their discrimination are not important. 
+
+
+```{r warning=FALSE, message=FALSE}
+library(haven)
+library(readr)
+library(dslabs)
+library(tidyverse)
+library(dplyr)
+tissue <- read_csv("BreastTissue.csv")
+# Checking the structure of adult data
+str(tissue)
+
+```
+
+Combining levels of target variable and deleting the case# as it is a unique variable.
+
+```{r}
+tissue <- tissue[, -1]
+tissue$Class <- as.factor(tissue$Class) 
+
+levels(tissue$Class)[levels(tissue$Class) %in% c("fad", "gla", "mas")] <- "other"
+levels(tissue$Class)
+```
+
+We want to predict the `Class` of the breast tissue using Breast Tissue data.
+
+# Splitting the data in train and test
+
+```{r warning=FALSE, message=FALSE}
+#Splitting the data using a function from caret package
+library(caret)
+
+index <- createDataPartition(tissue$Class, p = 0.70, list = FALSE)
+train <- tissue[index,]
+test <- tissue[-index,]
+```
+
+## Setting the reference level
+Unlike binary logistic regression, in multinomial logistic regression, we need to define the reference level. Please note this is specific to the function which we are using from `nnet` package in R. There are some functions from other R packages where we don’t really need to mention the reference level before building the model.
+
+```{r}
+# Setting the reference
+train$Class <- relevel(train$Class, ref = "adi")
+```
+
+## Training the multinomial classification model
+
+To train the model, we will be using `multinom` function from `nnet` package. Once the model is trained, then we will use the `summary()` function to check the model coefficients.
+```{r warning=TRUE}
+library(nnet)
+
+# Training the multinomial model
+multinom_model <- multinom(Class ~ ., data = tissue) # using all the covariates
+
+# Checking the model
+summary(multinom_model)
+```
+Just like binary logistic regression, we need to convert the coefficients to odds by taking the exponential of the coefficients.
+
+```{r}
+exp(coef(multinom_model))
+```
+The predicted values are saved as `fitted.values` in the model object. Let’s see the top 6 observations.
+
+```{r}
+head(round(fitted(multinom_model), 2))
+```
+The multinomial regression predicts the probability of a particular observation to be part of the said level. This is what we are seeing in the above table. Columns represent the classification levels and rows represent the observations. This means that the first six observation are classified as car.
+
+## Predicting & Validating the model
+
+To validate the model, we will be looking at the accuracy of the model. This accuracy can be calculated from the classification table (confusion matrix).
+
+```{r}
+# Predicting the values for train dataset
+train$ClassPredicted <- predict(multinom_model, newdata = train, "class")
+
+# Building classification table
+tab <- table(train$Class, train$ClassPredicted)
+confusionMatrix(tab)
+# Calculating accuracy - sum of diagonal elements divided by total obs
+round((sum(diag(tab))/sum(tab))*100,2)
+```
+
+## Predicting the class on test dataset.
+```{r}
+# Predicting the class for test dataset
+test$ClassPredicted <- predict(multinom_model, newdata = test, "class")
+
+# Building classification table
+tab <- table(test$Class, test$ClassPredicted)
+confusionMatrix(tab)
+
+# Calculating accuracy - sum of diagonal elements divided by total obs
+round((sum(diag(tab))/sum(tab))*100,2)
+```
+We were able to achieve 96.67% accuracy in the test dataset and this number is very close to train, and thus we conclude that the model is good and is also stable.
+
+```{r}
+predicted=predict(multinom_model,test,type="probs")
+head(predicted)
+```
+
+
+### Let's continue with the digits data. 
+
+## Three classes
+
+Here we look at an example where there are three classes to consider; namely _1s_, _2s_, and _8s_. 
+
+We read-in the data:
+
+```{r, message=FALSE, warning=FALSE}
+url <- "https://raw.githubusercontent.com/datasciencelabs/data/master/hand-written-digits-train.csv"
+
+digits <- read_csv(url)
+```
+
+
+```{r}
+dat3 <- digits %>% filter(label %in% c(1, 2, 8))
+```
+
+
+```{r, echo=FALSE, fig.align="center", fig.width=14}
+tmp <- lapply( c(37,9,5,28), function(i){
+    expand.grid(Row=1:28, Column=1:28) %>%  
+      mutate(id=i, label=dat3$label[i], id=paste("obs",i),
+             value = unlist(dplyr::select(dat3,pixel0:pixel783)[i,]))
+})
+tmp <- Reduce(rbind, tmp)
+
+tmp %>% ggplot(aes(Row, Column, fill=value)) + 
+  geom_raster() + 
+  scale_y_reverse() +
+  scale_fill_gradient(low="white", high="black") +
+  geom_vline(xintercept = 14.5) +
+  geom_hline(yintercept = 14.5)  +
+  facet_grid(.~id) 
+```
+
+We can create these new predictors like we did before:
+
+```{r}
+dat3 <- mutate(dat3, label =  as.character(label)) 
+row_column <- expand.grid(row=1:28, col=1:28)
+ind1 <- which(row_column$col <= 14 & row_column$row <=14)
+ind2 <- which(row_column$col > 14 & row_column$row > 14)
+ind3 <- which(row_column$col <= 14 & row_column$row > 14)
+ind4 <- which(row_column$col > 14 & row_column$row <= 14)
+ind <- c(ind1,ind2, ind3, ind4)
+X <- as.matrix(dat3[,-1])
+X <- X>200
+X1 <- rowSums(X[,ind1])/rowSums(X)
+X2 <- rowSums(X[,ind2])/rowSums(X)
+X3 <- rowSums(X[,ind3])/rowSums(X)
+X4 <- rowSums(X[,ind4])/rowSums(X)
+dat3 <- mutate(dat3,label=as.factor(label),  X_1 = X1, X_2 = X2, X_3=X3, X_4=X4)
+dat3<-dat3%>%dplyr::select(label, X_1, X_2, X_3, X_4)
+```
+
+# Splitting the data in train and test
+
+```{r warning=FALSE, message=FALSE}
+library(caret)
+
+index <- createDataPartition(dat3$label, p = 0.70, list = FALSE)
+train_st <- dat3[index,]
+test_st <- dat3[-index,]
+```
+
+## Setting the reference level
+
+
+```{r}
+# Setting the reference
+train_st$label <- relevel(train_st$label, ref = "1")
+```
+
+## Training the multinomial classification model
+
+To train the model, we will be using `multinom` function from `nnet` package. Once the model is trained, then we will use the `summary()` function to check the model coefficients.
+
+```{r warning=FALSE}
+require(nnet)
+
+# Training the multinomial model
+multinom_model_d <- multinom(label ~ ., data = dat3) # using all the covariates
+
+# Checking the model
+summary(multinom_model_d)
+```
+
+## Just like binary logistic regression, we need to convert the coefficients to odds by taking the exponential of the coefficients.
+```{r}
+exp(coef(multinom_model_d))
+```
+
+The predicted values are saved as fitted.values in the model object. Let’s see the top 6 observations.
+```{r}
+head(round(fitted(multinom_model_d), 2))
+```
+## Predicting & Validating the model
+
+To validate the model, we will be looking at the accuracy of the model. This accuracy can be calculated from the classification table.
+
+```{r}
+# Predicting the values for train dataset
+train_st$Predicted <- predict(multinom_model_d, newdata = train_st, "class")
+
+# Building classification table
+tab <- table(train_st$label, train_st$Predicted)
+confusionMatrix(tab)
+# Calculating accuracy - sum of diagonal elements divided by total obs
+round((sum(diag(tab))/sum(tab))*100,2)
+```
+
+## Predicting the class on test dataset.
+```{r}
+# Predicting the class for test dataset
+test_st$Predicted <- predict(multinom_model_d, newdata = test_st, "class")
+
+# Building classification table
+tabt <- table(test_st$label, test_st$Predicted)
+confusionMatrix(tabt)
+# Calculating accuracy
+round((sum(diag(tabt))/sum(tabt))*100,2)
+
+```
+
+
