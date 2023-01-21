@@ -2,17 +2,17 @@
 
 This will be a two-week short course taught by several experts both locally and internationally. The aim of the course is to
 enhance capacity in machine learning methods for health data science to address global health problems in Africa.
-Software required: R & RStudio.
+Software required: **R** & **RStudio**.
 
 * Course materials can be found here. 
 * Official course webpage here: [http://mlcourseukzn.github.io](http://mlcourseukzn.github.io)
 
 # Instructor
 * Dr. Gabreil Kallah-Dagadu
-* Postdoc Fellow
+* DSI Postdoc Fellow
 * kallahdagadug@ukzn.ac.za
 * Dr. Mohanad Mohammed
-* Postdoc Fellow
+* DSI Postdoc Fellow
 * mohammedm1@ukzn.ac.za
 
 # Dates
