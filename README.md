@@ -84,7 +84,7 @@ use `git pull` to get updates.
 
 In RStudio, if you followed the instructions above, simply navigate
 to the Git tab and press the Pull button. In terminal / Git bash, use
-`cd` to navigate to the `BST219_2022` folder, then run `git pull`.
+`cd` to navigate to the `DSI_Africa_ML_ShortCourse` folder, then run `git pull`.
 
 
 # Taking Notes on Course Materials
