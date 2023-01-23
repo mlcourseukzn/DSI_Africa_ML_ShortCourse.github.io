@@ -7,13 +7,6 @@ Software required: **R** & **RStudio**.
 * Course materials can be found here. 
 * Official course webpage here: [http://mlcourseukzn.github.io](http://mlcourseukzn.github.io)
 
-# Instructor
-* Dr. Gabreil Kallah-Dagadu
-* DSI Postdoc Fellow
-* kallahdagadug@ukzn.ac.za
-* Dr. Mohanad Mohammed
-* DSI Postdoc Fellow
-* mohammedm1@ukzn.ac.za
 
 # Dates
 Monday, 23 January 2023 – Friday, 3rd February 2023
